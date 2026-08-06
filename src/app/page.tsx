@@ -14,7 +14,11 @@ import {
   Brain,
   MessageSquareWarning,
   Settings2,
-  Plus
+  Plus,
+  Map,
+  ClipboardList,
+  FileBarChart,
+  BookOpenCheck
 } from 'lucide-react';
 
 export default function Home() {
@@ -99,7 +103,7 @@ export default function Home() {
           <div className="reveal">
             <p className="overline hero-eyebrow">Conformidade NR-1 · Riscos psicossociais</p>
             <h1 className="hero-headline">A NR-1 não é uma planilha. É <em className="editorial">gente</em>.</h1>
-            <p className="hero-sub">PsicoSafe centraliza mapeamento de riscos psicossociais, ouvidoria anônima, controle de atestados e plano de ação. Em uma plataforma só.</p>
+            <p className="hero-sub">A PSICOSAFE reúne, em uma única plataforma, todas as ferramentas necessárias para a gestão dos riscos psicossociais no ambiente de trabalho e o fortalecimento da Saúde e Segurança do Trabalho (SST).</p>
             <div className="hero-actions">
               <a href="#cta" className="btn btn-primary btn-lg">Agendar demo</a>
               <a href="#como-funciona" className="btn btn-ghost btn-lg">Ver como funciona →</a>
@@ -207,68 +211,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 ÁREAS FUNCIONAIS */}
+      {/* FUNCIONALIDADES */}
       <section className="areas">
         <div className="container">
           <div className="section-header reveal">
-            <p className="overline section-eyebrow">6 áreas integradas</p>
+            <p className="overline section-eyebrow">Funcionalidades da Plataforma</p>
             <h2 className="section-title">Da planilha caótica ao <em className="editorial">controle</em> total.</h2>
-            <p className="section-sub">Cada área cobre uma exigência específica da NR-1 e do cuidado real com saúde mental no trabalho.</p>
+            <p className="section-sub">Tudo que sua empresa precisa para gerir saúde, segurança e prevenir riscos, com uma interface que convida à ação.</p>
           </div>
-          <div className="areas-grid">
-            <div className="area-card reveal">
-              <div className="area-icon"><Layers /></div>
-              <h3 className="area-title">Gestão Organizacional</h3>
-              <p className="area-desc">Cadastre setores com seus riscos psicossociais, gerencie colaboradores com vínculo e histórico.</p>
-              <div className="area-meta">
-                <span className="chip">Setores</span>
-                <span className="chip">Colaboradores</span>
-              </div>
+          <div className="feature-grid">
+            <div className="feat-card feat-card-bg1 reveal">
+              <div className="feat-icon"><Map /></div>
+              <h3 className="feat-title">Mapeamento de Riscos</h3>
+              <p className="feat-desc">Identifique e visualize os riscos psicossociais por setor por meio de heatmaps e indicadores inteligentes.</p>
             </div>
-            <div className="area-card reveal delay-100">
-              <div className="area-icon"><HeartPulse /></div>
-              <h3 className="area-title">Saúde Ocupacional</h3>
-              <p className="area-desc">Controle de atestados com busca de CID, encaminhamento INSS automático em &gt;15 dias.</p>
-              <div className="area-meta">
-                <span className="chip">Atestados</span>
-                <span className="chip">Saúde</span>
-              </div>
+            <div className="feat-card feat-card-bg2 reveal delay-100">
+              <div className="feat-icon"><MessageSquareWarning /></div>
+              <h3 className="feat-title">Ouvidoria Anônima</h3>
+              <p className="feat-desc">Receba relatos com segurança, confidencialidade e rastreabilidade para fortalecer a cultura organizacional.</p>
             </div>
-            <div className="area-card reveal delay-200">
-              <div className="area-icon"><Brain /></div>
-              <h3 className="area-title">Risco Psicossocial</h3>
-              <p className="area-desc">Questionários validados (COPSOQ, JCQ) com anonimato real e relatórios setoriais.</p>
-              <div className="area-meta">
-                <span className="chip">Questionários</span>
-                <span className="chip">Relatórios</span>
-              </div>
+            <div className="feat-card feat-card-bg3 reveal delay-200">
+              <div className="feat-icon"><ClipboardList /></div>
+              <h3 className="feat-title">Questionários</h3>
+              <p className="feat-desc">Aplique questionários validados para identificar fatores de risco psicossocial e subsidiar decisões preventivas.</p>
             </div>
-            <div className="area-card reveal">
-              <div className="area-icon"><MessageSquareWarning /></div>
-              <h3 className="area-title">Canal de Ouvidoria</h3>
-              <p className="area-desc">Denúncias anônimas categorizadas, fluxo de tratamento com SLA e trilha de auditoria.</p>
-              <div className="area-meta">
-                <span className="chip">Anônimo</span>
-                <span className="chip">SLA</span>
-              </div>
+            <div className="feat-card feat-card-bg4 reveal">
+              <div className="feat-icon"><HeartPulse /></div>
+              <h3 className="feat-title">Gestão de Atestados</h3>
+              <p className="feat-desc">Controle afastamentos, acompanhe indicadores e receba alertas para casos que demandam atenção.</p>
             </div>
-            <div className="area-card reveal delay-100">
-              <div className="area-icon"><Target /></div>
-              <h3 className="area-title">Plano de Ação</h3>
-              <p className="area-desc">Crie planos vinculados a riscos, atribua responsáveis e acompanhe em kanban.</p>
-              <div className="area-meta">
-                <span className="chip">Kanban</span>
-                <span className="chip">Evidências</span>
-              </div>
+            <div className="feat-card feat-card-bg5 reveal delay-100">
+              <div className="feat-icon"><FileBarChart /></div>
+              <h3 className="feat-title">Relatórios Gerenciais</h3>
+              <p className="feat-desc">Gere relatórios técnicos, dashboards e indicadores para apoiar auditorias, fiscalizações e a gestão da SST.</p>
             </div>
-            <div className="area-card reveal delay-200">
-              <div className="area-icon"><Settings2 /></div>
-              <h3 className="area-title">Administração</h3>
-              <p className="area-desc">Perfis de acesso (Admin, RH, Gestor, Psicólogo), auditoria de logs e configurações.</p>
-              <div className="area-meta">
-                <span className="chip">5 perfis</span>
-                <span className="chip">LGPD</span>
-              </div>
+            <div className="feat-card feat-card-bg6 reveal delay-200">
+              <div className="feat-icon"><Target /></div>
+              <h3 className="feat-title">Plano de Ação</h3>
+              <p className="feat-desc">Registre, acompanhe e monitore as ações corretivas e preventivas, com responsáveis e prazos definidos.</p>
+            </div>
+          </div>
+          
+          <div className="imgsst-banner reveal">
+            <div className="imgsst-icon"><BookOpenCheck /></div>
+            <div className="imgsst-content">
+              <h2>Índice de Maturidade de Governança <em className="editorial">(IMGSST)</em></h2>
+              <p>Avalie o nível de conformidade da empresa com a NR-01. Integramos todos os controles de documentos da empresa para que você possa identificar rapidamente as oportunidades de melhoria e fortalecer sua gestão de SST.</p>
             </div>
           </div>
         </div>
@@ -320,10 +308,18 @@ export default function Home() {
       {/* MANIFESTO */}
       <section className="manifesto">
         <div className="container manifesto-inner reveal">
-          <p className="overline manifesto-overline">Tese da marca</p>
-          <p className="manifesto-text">
-            Sofrimento no trabalho não nasce do nada — ele se acumula em silêncio. 
-            Saúde mental no trabalho não é benefício: é <em className="editorial">obrigação</em>, e é <em className="editorial">gente</em>.
+          <p className="overline manifesto-overline">Nosso Compromisso</p>
+          <p className="manifesto-text" style={{ fontSize: '32px', marginBottom: '24px' }}>
+            O sofrimento no trabalho não surge de um dia para o outro — ele se acumula em <em className="editorial">silêncio</em>.
+          </p>
+          <p className="manifesto-text" style={{ fontSize: '24px', opacity: 0.9, marginBottom: '48px', fontWeight: 400 }}>
+            Promover a saúde mental no trabalho não é apenas um benefício: é um compromisso com as pessoas, uma responsabilidade da empresa e um requisito para uma gestão preventiva.
+          </p>
+          <h2 style={{ fontSize: '48px', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--inverse-primary)' }}>
+            PSICOSAFE
+          </h2>
+          <p style={{ fontSize: '22px', fontFamily: 'var(--font-serif)', fontStyle: 'italic', opacity: 0.9 }}>
+            Cuidar da saúde é prevenir riscos.
           </p>
         </div>
       </section>
