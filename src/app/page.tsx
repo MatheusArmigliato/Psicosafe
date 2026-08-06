@@ -1,43 +1,45 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { 
-  Layers, 
-  Ear, 
-  Target, 
-  FileCheck2, 
-  Check, 
-  UsersRound, 
-  ShieldCheck, 
-  BriefcaseBusiness,
-  HeartPulse,
+  CheckCircle2, 
+  Leaf,
   Brain,
-  MessageSquareWarning,
-  Settings2,
-  Plus,
-  Map,
+  MessageSquareHeart,
   ClipboardList,
-  FileBarChart,
-  BookOpenCheck
+  ShieldCheck,
+  TrendingUp,
+  HeartPulse,
+  Layers,
+  Ear,
+  Target,
+  FileCheck2,
+  UsersRound,
+  BriefcaseBusiness,
+  Settings2,
+  Check
 } from 'lucide-react';
+import { useEffect } from 'react';
 
 export default function Home() {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
-
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-    document.querySelectorAll('.reveal').forEach((el) => {
+    const elements = document.querySelectorAll(
+      '.colored-card, .process-step, .persona-card, .faq-item, .feature-text, .feature-image, .about-text, .about-image, .comparativo h2, .comparativo table'
+    );
+    
+    elements.forEach((el) => {
+      el.classList.add('reveal');
       observer.observe(el);
     });
 
@@ -47,352 +49,391 @@ export default function Home() {
   const faqs = [
     {
       q: "PsicoSafe substitui consultoria de NR-1?",
-      a: "Não exatamente. Consultoria entrega laudo e recomendação. PsicoSafe é o sistema vivo que executa o que o laudo recomenda — mapeamento contínuo, ouvidoria, atestados, plano de ação. Consultoria + PsicoSafe = combo ideal. Se precisa escolher um, a maioria dos nossos clientes encontra mais valor recorrente na plataforma."
+      a: "Não exatamente. Consultoria entrega laudo e recomendação. PsicoSafe é o sistema vivo que executa o que o laudo recomenda — mapeamento contínuo, ouvidoria, atestados, plano de ação. Consultoria + PsicoSafe = combo ideal."
     },
     {
       q: "Como funciona o anonimato da ouvidoria e dos questionários?",
-      a: "Ouvidoria tem toggle de anonimato por relato — o colaborador escolhe a cada envio. Quando anônimo, nenhum dado pessoal é registrado em nenhum momento, nem mesmo administradores rastreiam quem enviou. Em questionários psicossociais, o CPF serve apenas para garantir resposta única — depois disso a resposta é dissociada da identidade no banco. Empresa enxerga apenas agregados por setor."
+      a: "A ouvidoria tem opção de anonimato por relato — o colaborador escolhe a cada envio. Quando anônimo, nenhum dado pessoal é registrado, nem mesmo administradores rastreiam quem enviou. A empresa enxerga apenas agregados por setor."
     },
     {
       q: "E a LGPD? Como vocês tratam os dados?",
-      a: "Tratamos cada dado com finalidade explícita e mínima. Dados pessoais e respostas individuais ficam segregados; dados agregados são o que a empresa vê. Arquitetura preparada para auditoria de DPO, com trilha completa de acessos. Documentação técnica disponível sob NDA."
+      a: "Tratamos cada dado com finalidade explícita e mínima. Dados pessoais e respostas individuais ficam segregados; dados agregados são o que a empresa vê. Arquitetura preparada para auditoria de DPO."
     },
     {
       q: "Posso integrar com meu sistema de RH atual?",
-      a: "Sim. No plano Pro, você importa colaboradores via CSV/XLSX e atualiza periodicamente. No plano Enterprise, oferecemos integração nativa com Senior, TOTVS, Sólides e outros via API."
+      a: "Sim. No plano Pro, você importa colaboradores via CSV/XLSX. No plano Enterprise, oferecemos integração nativa com Senior, TOTVS, Sólides e outros via API."
     },
     {
       q: "Qual o ROI esperado?",
-      a: "O ROI mais defensável vem da prevenção: um afastamento longo custa 6 meses de salário + INSS + substituição. Uma autuação da NR-1 vai de R$ 4k a R$ 50k por irregularidade. Empresa típica de 200 colaboradores tem 2–3 afastamentos longos/ano. Prevenir um único incidente já paga dois anos de PsicoSafe."
-    },
-    {
-      q: "Quanto tempo leva o onboarding?",
-      a: "No plano Pro, 4 horas de onboarding guiado por nossa equipe + cadastro inicial (importação CSV reduz drasticamente). A maioria dos clientes dispara o primeiro questionário em até 7 dias após o contrato."
-    },
-    {
-      q: "Existe garantia? E se não funcionar?",
-      a: "Sim — 30 dias de garantia incondicional. Se sua empresa não conseguir disparar o primeiro questionário psicossocial nesse período, devolvemos integralmente o valor pago. Sem perguntas."
-    },
-    {
-      q: "Como é o suporte no dia a dia?",
-      a: "Plano Pro tem chat humano com resposta em até 4h úteis. Plano Enterprise tem SLA contratual de 1h e CSM dedicado. Toda comunicação é em português, com gente que conhece NR-1 e RH brasileiro — não chatbot."
+      a: "O ROI mais defensável vem da prevenção: um afastamento longo custa 6 meses de salário + INSS + substituição. Prevenir um único incidente já paga dois anos de PsicoSafe."
     }
   ];
 
   return (
     <>
       {/* HEADER */}
-      <header className="header reveal">
+      <header className="header">
         <div className="container header-inner">
           <a href="#" className="logo">
-            <span className="logo-text">PsicoSafe</span>
+            <Leaf className="text-primary" size={28} />
+            PsicoSafe
           </a>
-          <nav className="nav">
+          <nav className="nav-links">
             <a href="#como-funciona">Como funciona</a>
-            <a href="#produto">Produto</a>
+            <a href="#solucoes">Produto</a>
             <a href="#para-quem">Para quem é</a>
             <a href="#faq">Dúvidas</a>
+            <a href="#agendar" className="btn btn-primary" style={{ padding: '10px 20px', fontSize: '14px' }}>
+              Agendar Demo
+            </a>
           </nav>
-          <a href="#cta" className="btn btn-primary btn-sm">Agendar demo</a>
         </div>
       </header>
 
-      {/* HERO PRINCIPAL */}
+      {/* HERO SECTION */}
       <section className="hero">
-        <div className="container hero-grid">
-          <div className="reveal">
-            <p className="overline hero-eyebrow">Conformidade NR-1 · Riscos psicossociais</p>
-            <h1 className="hero-headline">A NR-1 não é uma planilha. É <em className="editorial">gente</em>.</h1>
-            <p className="hero-sub">A PSICOSAFE reúne, em uma única plataforma, todas as ferramentas necessárias para a gestão dos riscos psicossociais no ambiente de trabalho e o fortalecimento da Saúde e Segurança do Trabalho (SST).</p>
-            <div className="hero-actions">
-              <a href="#cta" className="btn btn-primary btn-lg">Agendar demo</a>
-              <a href="#como-funciona" className="btn btn-ghost btn-lg">Ver como funciona →</a>
+        <div className="hero-bg-shape"></div>
+        <div className="container hero-content">
+          <div className="hero-text">
+            <span className="overline">Conformidade NR-1 · Riscos psicossociais</span>
+            <h1>
+              A NR-1 não é uma planilha. É <span>gente</span>.
+            </h1>
+            <p>
+              A PSICOSAFE reúne, em uma única plataforma, todas as ferramentas necessárias para a gestão dos riscos psicossociais no ambiente de trabalho e o fortalecimento da Saúde e Segurança do Trabalho (SST).
+            </p>
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <a href="#agendar" className="btn btn-primary">
+                Agendar demo
+              </a>
+              <a href="#como-funciona" className="btn btn-outline">
+                Ver como funciona
+              </a>
             </div>
           </div>
-          <div className="hero-image reveal delay-200">
-            <img src="/hero-principal.png" alt="Visualização editorial do conceito de risco psicossocial" />
+          
+          <div className="hero-image-wrapper">
+            <img src="/hero-cutout.png" alt="Profissional de RH" />
+            
+            <div className="floating-badge badge-1" style={{ bottom: '120px', left: '-10px' }}>
+              <CheckCircle2 size={18} />
+              Avaliação de Governança
+            </div>
+            <div className="floating-badge badge-2" style={{ top: '100px', right: '0px' }}>
+              <Leaf size={18} />
+              Saúde Mental em foco
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURE CARDS COLORIDOS */}
+      <section className="features-colored">
+        <div className="container">
+          <div className="colored-grid">
+            <div className="colored-card c-forest">
+              <Brain size={32} />
+              <div>
+                <h3>Mapeamento</h3>
+                <p>Identifique riscos por setor com heatmaps.</p>
+              </div>
+            </div>
+            <div className="colored-card c-sage">
+              <ShieldCheck size={32} />
+              <div>
+                <h3>Governança</h3>
+                <p>Avalie o nível de conformidade com a NR-01.</p>
+              </div>
+            </div>
+            <div className="colored-card c-burgundy">
+              <MessageSquareHeart size={32} />
+              <div>
+                <h3>Ouvidoria</h3>
+                <p>Relatos confidenciais e rastreabilidade total.</p>
+              </div>
+            </div>
+            <div className="colored-card c-soft">
+              <ClipboardList size={32} />
+              <div>
+                <h3>Questionários</h3>
+                <p>Instrumentos validados para apoio à decisão.</p>
+              </div>
+            </div>
+            <div className="colored-card c-parchment">
+              <HeartPulse size={32} />
+              <div>
+                <h3>Atestados</h3>
+                <p>Controle de afastamentos e alertas imediatos.</p>
+              </div>
+            </div>
+            <div className="colored-card c-light">
+              <TrendingUp size={32} />
+              <div>
+                <h3>Relatórios</h3>
+                <p>Gere relatórios para auditorias e MPT.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* TRUSTED BY */}
       <section className="trusted">
-        <div className="container trusted-inner reveal">
-          <p className="overline trusted-label">Em conversa</p>
-          <p className="trusted-tagline">Em conversa com mais de 30 empresas brasileiras de 200 a 1.000 colaboradores que estão se adequando à NR-1 atualizada.</p>
-        </div>
-      </section>
-
-      {/* COMO FUNCIONA */}
-      <section className="how-it-works" id="como-funciona">
         <div className="container">
-          <div className="section-header reveal">
-            <p className="overline section-eyebrow">Como funciona</p>
-            <h2 className="section-title">Quatro fases que <em className="editorial">cabem</em> no seu dia.</h2>
-            <p className="section-sub">PsicoSafe organiza a NR-1 em uma jornada simples: do mapeamento da estrutura ao plano de ação rastreável.</p>
+          <p>Em conversa com mais de 30 empresas brasileiras de 200 a 1.000 colaboradores que estão se adequando à NR-1 atualizada.</p>
+        </div>
+      </section>
+
+      {/* ABOUT / NOSSA ABORDAGEM */}
+      <section className="about section-pad" id="sobre">
+        <div className="container about-grid">
+          <div className="about-image">
+            <img src="/about-prof.jpg" alt="Profissional PsicoSafe" />
           </div>
-          <div className="phases-grid">
-            <div className="phase reveal">
-              <p className="phase-number">01 · ENTENDA</p>
-              <div className="phase-icon"><Layers /></div>
-              <h3 className="phase-title">Mapeie</h3>
-              <p className="phase-desc">Cadastre setores, colaboradores e indicadores de saúde ocupacional. Tenha uma fotografia honesta de quem está exposto e a quê.</p>
+          <div className="about-text">
+            <span className="overline">Nossa Abordagem</span>
+            <h2>O sofrimento no trabalho não surge de um dia para o outro.</h2>
+            <p>
+              Ele se acumula em silêncio. Acreditamos que promover a saúde mental não é apenas um benefício ou um "nice to have": é um compromisso real com as pessoas e uma responsabilidade inegociável da empresa.
+            </p>
+            <p>
+              Com a PsicoSafe, você não entrega apenas um laudo para a gaveta. Você estabelece uma cultura de escuta, prevenção e rastreabilidade, avaliando a Maturidade da Governança (IMGSST) e garantindo conformidade viva com a NR-01.
+            </p>
+            <div className="signature">
+              PsicoSafe
             </div>
-            <div className="phase reveal delay-100">
-              <p className="phase-number">02 · ESCUTE</p>
-              <div className="phase-icon"><Ear /></div>
-              <h3 className="phase-title">Ouça</h3>
-              <p className="phase-desc">Abra canais para o que ainda não tem voz. Ouvidoria anônima e questionários psicossociais validados, sem a empresa acessar dados individuais.</p>
+            <p style={{ fontSize: '14px', marginTop: '8px', color: 'rgba(255,255,255,0.8)', fontFamily: 'var(--font-sans)' }}>Plataforma SaaS de Gestão de Risco Psicossocial</p>
+          </div>
+        </div>
+      </section>
+
+      {/* COMO FUNCIONA (4 FASES) */}
+      <section className="how-it-works section-pad" id="como-funciona">
+        <div className="container">
+          <div className="text-center">
+            <span className="overline">Como funciona</span>
+            <h2>Quatro fases que <em>cabem</em> no seu dia.</h2>
+            <p className="text-sans" style={{ color: 'var(--on-surface-muted)', maxWidth: '600px', margin: '16px auto 0' }}>
+              PsicoSafe organiza a NR-1 em uma jornada simples: do mapeamento da estrutura ao plano de ação rastreável.
+            </p>
+          </div>
+          <div className="process-grid">
+            <div className="process-step">
+              <span className="num">01 · ENTENDA</span>
+              <h3>Mapeie</h3>
+              <p>Cadastre setores, colaboradores e indicadores de saúde ocupacional. Tenha uma fotografia honesta de quem está exposto e a quê.</p>
             </div>
-            <div className="phase reveal delay-200">
-              <p className="phase-number">03 · INTERVENHA</p>
-              <div className="phase-icon"><Target /></div>
-              <h3 className="phase-title">Aja</h3>
-              <p className="phase-desc">Transforme dado em plano. Cada risco identificado vira ação rastreável, com responsável, prazo e evidência de execução.</p>
+            <div className="process-step">
+              <span className="num">02 · ESCUTE</span>
+              <h3>Ouça</h3>
+              <p>Abra canais para o que ainda não tem voz. Ouvidoria anônima e questionários psicossociais validados.</p>
             </div>
-            <div className="phase reveal delay-300">
-              <p className="phase-number">04 · DOCUMENTE</p>
-              <div className="phase-icon"><FileCheck2 /></div>
-              <h3 className="phase-title">Prove</h3>
-              <p className="phase-desc">Relatórios prontos para fiscalização do MPT. Controle de atestados e afastamentos. Trilha de auditoria completa.</p>
+            <div className="process-step">
+              <span className="num">03 · INTERVENHA</span>
+              <h3>Aja</h3>
+              <p>Transforme dado em plano. Cada risco identificado vira ação rastreável, com responsável e evidência de execução.</p>
+            </div>
+            <div className="process-step">
+              <span className="num">04 · DOCUMENTE</span>
+              <h3>Prove</h3>
+              <p>Relatórios prontos para fiscalização do MPT. Controle de atestados e afastamentos. Trilha de auditoria completa.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* HERO SECUNDÁRIO */}
-      <section className="hero-secondary" id="produto">
-        <div className="container hero-secondary-grid">
-          <div className="hero-secondary-image reveal">
-            <img src="/logo.png" alt="Dashboard do PsicoSafe" />
+      {/* FUNCIONALIDADES VISUAIS */}
+      <section className="features section-pad" id="solucoes">
+        <div className="container">
+          <div className="text-center" style={{ marginBottom: '80px' }}>
+            <span className="overline">Funcionalidades da Plataforma</span>
+            <h2>Da planilha caótica ao <em>controle</em> total.</h2>
           </div>
-          <div className="reveal delay-200">
-            <p className="overline hero-eyebrow">A plataforma</p>
-            <h2 className="hero-secondary-headline">Tudo o que você precisa pra cumprir a NR-1 — em <em className="editorial">um lugar</em>.</h2>
-            <p className="hero-secondary-sub">Cadastra colaboradores, dispara questionários, recebe denúncias, controla atestados e gera relatórios de risco. Sem planilhas. Sem consultoria.</p>
-            <ul className="feature-list">
-              <li><span className="feature-check"><Check /></span>Mapeamento de risco por setor, com heatmap visual</li>
-              <li><span className="feature-check"><Check /></span>Ouvidoria anônima com trilha de auditoria</li>
-              <li><span className="feature-check"><Check /></span>Questionários psicossociais validados (COPSOQ, JCQ)</li>
-              <li><span className="feature-check"><Check /></span>Relatórios prontos pra fiscalização do MPT</li>
-              <li><span className="feature-check"><Check /></span>Encaminhamento INSS automático em atestados &gt;15 dias</li>
-            </ul>
+
+          <div className="feature-showcase">
+            <div className="feature-img">
+              <img src="/dash-riscos.jpg" alt="Dashboard de Mapeamento de Riscos" />
+            </div>
+            <div className="feature-text">
+              <h3>Inteligência e Prevenção</h3>
+              <p>Identifique os riscos psicossociais antes que eles se transformem em afastamentos e processos. Nós cuidamos dos dados para você cuidar das pessoas.</p>
+              <div className="feature-list">
+                <div className="feature-item">
+                  <div className="feature-icon"><Brain /></div>
+                  <div>
+                    <h4>Mapeamento de Riscos</h4>
+                    <p>Identifique e visualize os riscos por setor por meio de heatmaps e indicadores inteligentes.</p>
+                  </div>
+                </div>
+                <div className="feature-item">
+                  <div className="feature-icon"><ClipboardList /></div>
+                  <div>
+                    <h4>Questionários Psicossociais</h4>
+                    <p>Aplique questionários validados para identificar fatores de risco psicossocial e subsidiar decisões.</p>
+                  </div>
+                </div>
+                <div className="feature-item">
+                  <div className="feature-icon"><MessageSquareHeart /></div>
+                  <div>
+                    <h4>Ouvidoria Anônima</h4>
+                    <p>Receba relatos com segurança, confidencialidade e rastreabilidade para fortalecer a cultura.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="feature-showcase">
+            <div className="feature-img">
+              <img src="/dash-relatorios.jpg" alt="Dashboard de Relatórios e Planos de Ação" />
+            </div>
+            <div className="feature-text">
+              <h3>Ação e Governança</h3>
+              <p>Avalie a Maturidade da Governança (IMGSST), verificando a conformidade com a NR-01. Integre e tenha todos os controles da empresa nas suas mãos.</p>
+              <div className="feature-list">
+                <div className="feature-item">
+                  <div className="feature-icon"><ShieldCheck /></div>
+                  <div>
+                    <h4>Avaliação de Governança (IMGSST)</h4>
+                    <p>Avalie o nível de conformidade da empresa com a NR-01 e integre todos os controles de documentos.</p>
+                  </div>
+                </div>
+                <div className="feature-item">
+                  <div className="feature-icon"><Target /></div>
+                  <div>
+                    <h4>Plano de Ação</h4>
+                    <p>Registre, acompanhe e monitore as ações corretivas e preventivas, com responsáveis e prazos definidos.</p>
+                  </div>
+                </div>
+                <div className="feature-item">
+                  <div className="feature-icon"><TrendingUp /></div>
+                  <div>
+                    <h4>Relatórios Gerenciais</h4>
+                    <p>Gere relatórios técnicos, dashboards e indicadores para apoiar auditorias e fiscalizações da SST.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* PARA QUEM É */}
-      <section className="who" id="para-quem">
+      <section className="personas section-pad" id="para-quem">
         <div className="container">
-          <div className="section-header reveal">
-            <p className="overline section-eyebrow">Para quem é</p>
-            <h2 className="section-title">Pensado para quem leva NR-1 <em className="editorial">a sério</em>.</h2>
+          <div className="text-center">
+            <span className="overline">Para quem é</span>
+            <h2>Pensado para quem leva NR-1 <em>a sério</em>.</h2>
           </div>
           <div className="personas-grid">
-            <div className="persona reveal">
-              <div className="persona-icon"><UsersRound /></div>
-              <p className="persona-role">RH · DHO · People</p>
-              <h3 className="persona-title">Diretor(a) de RH</h3>
-              <p className="persona-desc">Você que precisa cumprir a NR-1 e cuidar das pessoas sem afogar em planilhas. Quer entender o que está acontecendo nos setores antes do problema chegar à diretoria.</p>
+            <div className="persona-card">
+              <span className="persona-role">RH · DHO · People</span>
+              <h4>Diretor(a) de RH</h4>
+              <p>Você que precisa cumprir a NR-1 e cuidar das pessoas sem afogar em planilhas. Quer entender o que está acontecendo nos setores antes do problema chegar à diretoria.</p>
             </div>
-            <div className="persona reveal delay-100">
-              <div className="persona-icon"><ShieldCheck /></div>
-              <p className="persona-role">SESMT · SST</p>
-              <h3 className="persona-title">Gestor(a) de SESMT</h3>
-              <p className="persona-desc">Você que precisa entregar relatórios rastreáveis para auditoria, MPT e CIPA. Trabalha com riscos ocupacionais e agora também com psicossociais.</p>
+            <div className="persona-card">
+              <span className="persona-role">SESMT · SST</span>
+              <h4>Gestor(a) de SESMT</h4>
+              <p>Você que precisa entregar relatórios rastreáveis para auditoria, MPT e CIPA. Trabalha com riscos ocupacionais e agora também com psicossociais.</p>
             </div>
-            <div className="persona reveal delay-200">
-              <div className="persona-icon"><BriefcaseBusiness /></div>
-              <p className="persona-role">C-LEVEL · DIRETORIA</p>
-              <h3 className="persona-title">Diretor(a) executivo(a)</h3>
-              <p className="persona-desc">Você que precisa proteger a empresa de risco trabalhista, tomar decisões baseadas em dado e mostrar à diretoria que saúde mental virou agenda regulatória.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FUNCIONALIDADES */}
-      <section className="areas">
-        <div className="container">
-          <div className="section-header reveal">
-            <p className="overline section-eyebrow">Funcionalidades da Plataforma</p>
-            <h2 className="section-title">Da planilha caótica ao <em className="editorial">controle</em> total.</h2>
-            <p className="section-sub">Tudo que sua empresa precisa para gerir saúde, segurança e prevenir riscos, com uma interface que convida à ação.</p>
-          </div>
-          <div className="feature-grid">
-            <div className="feat-card feat-card-bg1 reveal">
-              <div className="feat-icon"><Map /></div>
-              <h3 className="feat-title">Mapeamento de Riscos</h3>
-              <p className="feat-desc">Identifique e visualize os riscos psicossociais por setor por meio de heatmaps e indicadores inteligentes.</p>
-            </div>
-            <div className="feat-card feat-card-bg2 reveal delay-100">
-              <div className="feat-icon"><MessageSquareWarning /></div>
-              <h3 className="feat-title">Ouvidoria Anônima</h3>
-              <p className="feat-desc">Receba relatos com segurança, confidencialidade e rastreabilidade para fortalecer a cultura organizacional.</p>
-            </div>
-            <div className="feat-card feat-card-bg3 reveal delay-200">
-              <div className="feat-icon"><ClipboardList /></div>
-              <h3 className="feat-title">Questionários</h3>
-              <p className="feat-desc">Aplique questionários validados para identificar fatores de risco psicossocial e subsidiar decisões preventivas.</p>
-            </div>
-            <div className="feat-card feat-card-bg4 reveal">
-              <div className="feat-icon"><HeartPulse /></div>
-              <h3 className="feat-title">Gestão de Atestados</h3>
-              <p className="feat-desc">Controle afastamentos, acompanhe indicadores e receba alertas para casos que demandam atenção.</p>
-            </div>
-            <div className="feat-card feat-card-bg5 reveal delay-100">
-              <div className="feat-icon"><FileBarChart /></div>
-              <h3 className="feat-title">Relatórios Gerenciais</h3>
-              <p className="feat-desc">Gere relatórios técnicos, dashboards e indicadores para apoiar auditorias, fiscalizações e a gestão da SST.</p>
-            </div>
-            <div className="feat-card feat-card-bg6 reveal delay-200">
-              <div className="feat-icon"><Target /></div>
-              <h3 className="feat-title">Plano de Ação</h3>
-              <p className="feat-desc">Registre, acompanhe e monitore as ações corretivas e preventivas, com responsáveis e prazos definidos.</p>
-            </div>
-          </div>
-          
-          <div className="imgsst-banner reveal">
-            <div className="imgsst-icon"><BookOpenCheck /></div>
-            <div className="imgsst-content">
-              <h2>Índice de Maturidade de Governança <em className="editorial">(IMGSST)</em></h2>
-              <p>Avalie o nível de conformidade da empresa com a NR-01. Integramos todos os controles de documentos da empresa para que você possa identificar rapidamente as oportunidades de melhoria e fortalecer sua gestão de SST.</p>
+            <div className="persona-card">
+              <span className="persona-role">C-Level · Diretoria</span>
+              <h4>Diretor(a) Executivo(a)</h4>
+              <p>Você que precisa proteger a empresa de risco trabalhista, tomar decisões baseadas em dado e mostrar à diretoria que saúde mental virou agenda regulatória.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* COMPARATIVO */}
-      <section className="comparison">
+      <section className="comparativo section-pad">
         <div className="container">
-          <div className="section-header reveal">
-            <p className="overline section-eyebrow">Por que não consultoria?</p>
-            <h2 className="section-title">Consultoria entrega <em className="editorial">laudo</em>. Plataforma entrega <em className="editorial">resultado</em>.</h2>
-            <p className="section-sub">Consultoria + PsicoSafe é o combo ideal. Mas se você precisa escolher um, veja a diferença.</p>
+          <div className="text-center">
+            <span className="overline">Por que não consultoria?</span>
+            <h2>Consultoria entrega laudo. <br/>A PsicoSafe entrega <em>resultado</em>.</h2>
           </div>
-          <div className="comparison-table reveal">
-            <div className="comparison-row head">
-              <div className="comparison-cell head"></div>
-              <div className="comparison-cell head">Consultoria de NR-1</div>
-              <div className="comparison-cell head" style={{background: 'var(--primary)', color: 'var(--on-primary)', borderRadius: 0}}>PsicoSafe</div>
-            </div>
-            <div className="comparison-row">
-              <div className="comparison-cell label">Custo anual estimado</div>
-              <div className="comparison-cell text-muted">R$ 30k–80k (one-shot)</div>
-              <div className="comparison-cell psicosafe"><Check className="text-success" /> A partir de R$ 18k/ano</div>
-            </div>
-            <div className="comparison-row">
-              <div className="comparison-cell label">Tempo até primeiro resultado</div>
-              <div className="comparison-cell text-muted">3–6 meses</div>
-              <div className="comparison-cell psicosafe"><Check className="text-success" /> 2 semanas</div>
-            </div>
-            <div className="comparison-row">
-              <div className="comparison-cell label">Mapeamento de risco contínuo</div>
-              <div className="comparison-cell text-muted">Pontual (1x/ano)</div>
-              <div className="comparison-cell psicosafe"><Check className="text-success" /> Contínuo, em tempo real</div>
-            </div>
-            <div className="comparison-row">
-              <div className="comparison-cell label">Ouvidoria anônima ativa</div>
-              <div className="comparison-cell text-muted">— (não inclui)</div>
-              <div className="comparison-cell psicosafe"><Check className="text-success" /> Incluso</div>
-            </div>
-            <div className="comparison-row">
-              <div className="comparison-cell label">Relatórios para MPT</div>
-              <div className="comparison-cell text-muted">Geração manual</div>
-              <div className="comparison-cell psicosafe"><Check className="text-success" /> Exportação automática</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MANIFESTO */}
-      <section className="manifesto">
-        <div className="container manifesto-inner reveal">
-          <p className="overline manifesto-overline">Nosso Compromisso</p>
-          <p className="manifesto-text" style={{ fontSize: '32px', marginBottom: '24px' }}>
-            O sofrimento no trabalho não surge de um dia para o outro — ele se acumula em <em className="editorial">silêncio</em>.
-          </p>
-          <p className="manifesto-text" style={{ fontSize: '24px', opacity: 0.9, marginBottom: '48px', fontWeight: 400 }}>
-            Promover a saúde mental no trabalho não é apenas um benefício: é um compromisso com as pessoas, uma responsabilidade da empresa e um requisito para uma gestão preventiva.
-          </p>
-          <h2 style={{ fontSize: '48px', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--inverse-primary)' }}>
-            PSICOSAFE
-          </h2>
-          <p style={{ fontSize: '22px', fontFamily: 'var(--font-serif)', fontStyle: 'italic', opacity: 0.9 }}>
-            Cuidar da saúde é prevenir riscos.
-          </p>
+          <table className="comp-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Consultoria de NR-1</th>
+                <th className="highlight">PsicoSafe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Custo anual estimado</td>
+                <td>R$ 30k–80k (one-shot)</td>
+                <td className="highlight"><Check size={18} style={{marginRight:'8px', verticalAlign:'middle'}}/> A partir de R$ 18k/ano</td>
+              </tr>
+              <tr>
+                <td>Tempo até 1º resultado</td>
+                <td>3–6 meses</td>
+                <td className="highlight"><Check size={18} style={{marginRight:'8px', verticalAlign:'middle'}}/> 2 semanas</td>
+              </tr>
+              <tr>
+                <td>Mapeamento contínuo</td>
+                <td>Pontual (1x/ano)</td>
+                <td className="highlight"><Check size={18} style={{marginRight:'8px', verticalAlign:'middle'}}/> Em tempo real</td>
+              </tr>
+              <tr>
+                <td>Ouvidoria anônima</td>
+                <td>Não inclui</td>
+                <td className="highlight"><Check size={18} style={{marginRight:'8px', verticalAlign:'middle'}}/> Incluso</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="faq" id="faq">
+      <section className="faq section-pad" id="faq">
         <div className="container">
-          <div className="section-header reveal">
-            <p className="overline section-eyebrow">Dúvidas frequentes</p>
-            <h2 className="section-title">Perguntas que <em className="editorial">sempre</em> aparecem.</h2>
+          <div className="text-center">
+            <span className="overline">Dúvidas frequentes</span>
+            <h2>Perguntas que <em>sempre</em> aparecem.</h2>
           </div>
-          <div className="faq-list">
+          <div className="faq-grid">
             {faqs.map((faq, index) => (
-              <div className={`faq-item reveal delay-${(index % 3) * 100} ${openFaqIndex === index ? 'open' : ''}`} key={index}>
-                <button className="faq-question" onClick={() => toggleFaq(index)}>
-                  <span>{faq.q}</span>
-                  <Plus className="faq-icon" />
-                </button>
-                <div className="faq-answer">
-                  <div className="faq-answer-inner" dangerouslySetInnerHTML={{__html: faq.a}}></div>
-                </div>
+              <div className="faq-item" key={index}>
+                <div className="faq-question">{faq.q}</div>
+                <div className="faq-answer">{faq.a}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA FECHAMENTO */}
-      <section className="cta" id="cta">
-        <div className="container cta-inner reveal">
-          <h2 className="cta-headline">Coloque a NR-1 sob controle. Em <em className="editorial">semanas</em>, não meses.</h2>
-          <p className="cta-sub">Agende uma demo de 30 minutos. A gente mostra o produto e responde tudo.</p>
-          <a href="#" className="btn btn-primary btn-lg">Agendar demo</a>
+      {/* MANIFESTO / CTA BANNER */}
+      <section className="cta-banner" id="contato">
+        <div className="container">
+          <span className="overline" style={{ marginBottom: '24px' }}>Nosso Compromisso</span>
+          <p style={{ fontSize: '28px', color: 'var(--on-surface)', fontFamily: 'var(--font-serif)', maxWidth: '900px' }}>
+            "O sofrimento no trabalho não surge de um dia para o outro — ele se acumula em silêncio. Promover a saúde mental não é apenas um benefício: é um compromisso com as pessoas."
+          </p>
+          <h2 style={{ marginTop: '40px', fontSize: '64px', letterSpacing: '-0.03em' }}>PSICOSAFE</h2>
+          <p style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '24px', color: 'var(--tertiary)' }}>
+            Cuidar da saúde é prevenir riscos.
+          </p>
+          <div style={{ marginTop: '48px' }}>
+            <a href="#agendar" className="btn btn-primary">
+              Agendar minha demonstração
+            </a>
+          </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="footer reveal">
+      <footer className="footer">
         <div className="container">
-          <div className="footer-grid">
-            <div className="footer-brand">
-              <img src="/logo.png" alt="PsicoSafe" />
-              <p className="footer-tag">Gestão de riscos psicossociais que respeita a NR-1 — e respeita as pessoas.</p>
-            </div>
-            <div className="footer-col">
-              <h4>Produto</h4>
-              <ul>
-                <li><a href="#produto">Funcionalidades</a></li>
-                <li><a href="#para-quem">Para quem é</a></li>
-                <li><a href="#faq">Dúvidas</a></li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4>Empresa</h4>
-              <ul>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contato</a></li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4>Legal</h4>
-              <ul>
-                <li><a href="#">Termos de uso</a></li>
-                <li><a href="#">Política de privacidade</a></li>
-                <li><a href="#">LGPD</a></li>
-              </ul>
-            </div>
+          <div className="footer-links">
+            <a href="#">Início</a>
+            <a href="#como-funciona">Como Funciona</a>
+            <a href="#solucoes">Soluções</a>
+            <a href="#faq">Dúvidas</a>
+            <a href="#">Contato</a>
           </div>
-          <div className="footer-bottom">
-            <span>© 2026 PsicoSafe. Todos os direitos reservados.</span>
-            <span>CNPJ 00.000.000/0001-00</span>
-          </div>
+          <p style={{ opacity: 0.8, fontSize: '14px' }}>© 2026 PsicoSafe – Saúde e Segurança do Trabalho. Todos os direitos reservados.</p>
         </div>
       </footer>
     </>
