@@ -467,6 +467,13 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
+      {/* BRAND LOCKUP */}
+      <section className="brand-lockup">
+        <div className="container">
+          <img src="/logo-lockup.png" alt="PsicoSafe — Consultoria de Saúde e Segurança do Trabalho" />
+        </div>
+      </section>
+
       <footer className="footer">
         <div className="container">
           <div className="footer-links">
