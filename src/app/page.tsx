@@ -18,7 +18,7 @@ import {
   Settings2,
   Check
 } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   useEffect(() => {
@@ -68,6 +68,21 @@ export default function Home() {
       a: "O ROI mais defensável vem da prevenção: um afastamento longo custa 6 meses de salário + INSS + substituição. Prevenir um único incidente já paga dois anos de PsicoSafe."
     }
   ];
+
+  const WHATSAPP_NUMBER = "5519988534937";
+  const [demo, setDemo] = useState({ nome: "", empresa: "", funcionarios: "", telefone: "" });
+
+  const handleDemoSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const msg =
+      `Olá! Quero agendar uma demonstração da PsicoSafe.\n\n` +
+      `• Nome: ${demo.nome}\n` +
+      `• Empresa: ${demo.empresa}\n` +
+      `• Nº de funcionários: ${demo.funcionarios}\n` +
+      `• Contato: ${demo.telefone}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <>
@@ -459,6 +474,51 @@ export default function Home() {
             <a href="#agendar" className="btn btn-primary">
               Agendar minha demonstração
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* AGENDAR DEMO */}
+      <section className="agendar section-pad" id="agendar">
+        <div className="container">
+          <div className="agendar-card">
+            <div className="text-center">
+              <span className="overline">Agende sua demonstração</span>
+              <h2>Fale com a gente pelo <em>WhatsApp</em></h2>
+              <p className="agendar-sub">Preencha os dados abaixo e continue a conversa no WhatsApp — respondemos rápido.</p>
+            </div>
+            <form className="agendar-form" onSubmit={handleDemoSubmit}>
+              <div className="field">
+                <label htmlFor="nome">Seu nome</label>
+                <input id="nome" type="text" required placeholder="Como podemos te chamar?"
+                  value={demo.nome} onChange={(e) => setDemo({ ...demo, nome: e.target.value })} />
+              </div>
+              <div className="field">
+                <label htmlFor="empresa">Empresa</label>
+                <input id="empresa" type="text" required placeholder="Nome da empresa"
+                  value={demo.empresa} onChange={(e) => setDemo({ ...demo, empresa: e.target.value })} />
+              </div>
+              <div className="field">
+                <label htmlFor="funcionarios">Nº de funcionários</label>
+                <select id="funcionarios" required
+                  value={demo.funcionarios} onChange={(e) => setDemo({ ...demo, funcionarios: e.target.value })}>
+                  <option value="" disabled>Selecione</option>
+                  <option value="Até 100">Até 100</option>
+                  <option value="100 a 300">100 a 300</option>
+                  <option value="300 a 600">300 a 600</option>
+                  <option value="600 a 1.000">600 a 1.000</option>
+                  <option value="Mais de 1.000">Mais de 1.000</option>
+                </select>
+              </div>
+              <div className="field">
+                <label htmlFor="telefone">Telefone / WhatsApp</label>
+                <input id="telefone" type="tel" required placeholder="(00) 00000-0000"
+                  value={demo.telefone} onChange={(e) => setDemo({ ...demo, telefone: e.target.value })} />
+              </div>
+              <button type="submit" className="btn btn-primary agendar-btn">
+                Continuar no WhatsApp
+              </button>
+            </form>
           </div>
         </div>
       </section>

@@ -239,6 +239,27 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; color: var(--
 .cta-banner h2 { font-size: 48px; margin-bottom: 24px; color: var(--primary); }
 .cta-banner p { font-size: 20px; color: var(--on-surface-variant); margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6; font-family: var(--font-sans); }
 
+/* AGENDAR DEMO */
+.agendar { background: var(--surface-low); padding: 120px 0; }
+.agendar-card {
+  max-width: 640px; margin: 0 auto; background: white; border: 1px solid var(--border);
+  border-radius: 32px; padding: 56px 48px; box-shadow: 0 24px 48px rgba(50,83,67,0.08);
+}
+.agendar-card h2 { font-size: 36px; color: var(--primary); margin-bottom: 12px; }
+.agendar-sub { font-size: 16px; color: var(--on-surface-muted); line-height: 1.6; margin-top: 8px; }
+.agendar-form { display: grid; gap: 20px; margin-top: 40px; }
+.agendar-form .field { display: grid; gap: 8px; }
+.agendar-form label { font-size: 14px; font-weight: 600; color: var(--on-surface); font-family: var(--font-sans); }
+.agendar-form input, .agendar-form select {
+  width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px;
+  font-size: 16px; font-family: var(--font-sans); color: var(--on-surface); background: var(--surface-low);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.agendar-form input:focus, .agendar-form select:focus {
+  outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(50,83,67,0.1); background: white;
+}
+.agendar-btn { margin-top: 12px; width: 100%; justify-content: center; }
+
 /* COMPROMISSO LOGO */
 .compromisso-logo { width: 100%; max-width: 420px; height: auto; margin: 40px auto 0; display: block; mix-blend-mode: multiply; }
 
