@@ -75,7 +75,7 @@ export default function Home() {
       <header className="header">
         <div className="container header-inner">
           <a href="#" className="logo">
-            <Leaf className="text-primary" size={28} />
+            <img src="/logo-principal.png" alt="PsicoSafe" height={32} />
             PsicoSafe
           </a>
           <nav className="nav-links">
@@ -454,10 +454,7 @@ export default function Home() {
           <p style={{ fontSize: '28px', color: 'var(--on-surface)', fontFamily: 'var(--font-serif)', maxWidth: '900px' }}>
             "O sofrimento no trabalho não surge de um dia para o outro — ele se acumula em silêncio. Promover a saúde mental não é apenas um benefício: é um compromisso com as pessoas."
           </p>
-          <h2 style={{ marginTop: '40px', fontSize: '64px', letterSpacing: '-0.03em' }}>PSICOSAFE</h2>
-          <p style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '24px', color: 'var(--tertiary)' }}>
-            Cuidar da saúde é prevenir riscos.
-          </p>
+          <img className="compromisso-logo" src="/logo-lockup.png" alt="PsicoSafe — Consultoria de Saúde e Segurança do Trabalho" />
           <div style={{ marginTop: '48px' }}>
             <a href="#agendar" className="btn btn-primary">
               Agendar minha demonstração
@@ -467,13 +464,6 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      {/* BRAND LOCKUP */}
-      <section className="brand-lockup">
-        <div className="container">
-          <img src="/logo-lockup.png" alt="PsicoSafe — Consultoria de Saúde e Segurança do Trabalho" />
-        </div>
-      </section>
-
       <footer className="footer">
         <div className="container">
           <div className="footer-links">
