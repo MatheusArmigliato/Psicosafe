@@ -189,6 +189,21 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; color: var(--
 .persona-card h4 { font-size: 28px; margin-bottom: 16px; color: var(--primary); }
 .persona-card p { font-size: 16px; color: var(--on-surface-muted); line-height: 1.6; }
 
+/* DIFERENCIAIS */
+.diferenciais { background: var(--surface-low); padding: 120px 0; }
+.dif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+.dif-card {
+  background: white; padding: 40px 32px; border-radius: 24px; border: 1px solid var(--border);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.04); transition: transform 0.3s, box-shadow 0.3s;
+}
+.dif-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(50,83,67,0.1); }
+.dif-icon {
+  width: 64px; height: 64px; border-radius: 20px; background: var(--primary-soft, rgba(50,83,67,0.08));
+  display: flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: 24px;
+}
+.dif-card h4 { font-size: 22px; margin-bottom: 12px; color: var(--primary); font-family: var(--font-sans); font-weight: 600; }
+.dif-card p { font-size: 15px; color: var(--on-surface-muted); line-height: 1.6; }
+
 /* COMPARATIVO */
 .comparativo { background: var(--surface); padding: 120px 0; }
 .comp-table { 
@@ -233,7 +248,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; color: var(--
   .hero-content { grid-template-columns: 1fr; }
   .hero-bg-shape { width: 100%; height: 50%; border-bottom-left-radius: 0; }
   .colored-grid { grid-template-columns: 1fr; margin-top: 40px; }
-  .process-grid, .personas-grid { grid-template-columns: 1fr; }
+  .process-grid, .personas-grid, .dif-grid { grid-template-columns: 1fr; }
   .feature-showcase { grid-template-columns: 1fr; gap: 40px; }
   .about-grid { grid-template-columns: 1fr; }
   .about-image::before { display: none; }

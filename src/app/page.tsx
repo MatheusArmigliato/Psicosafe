@@ -48,8 +48,8 @@ export default function Home() {
 
   const faqs = [
     {
-      q: "PsicoSafe substitui consultoria de NR-1?",
-      a: "Não exatamente. Consultoria entrega laudo e recomendação. PsicoSafe é o sistema vivo que executa o que o laudo recomenda — mapeamento contínuo, ouvidoria, atestados, plano de ação. Consultoria + PsicoSafe = combo ideal."
+      q: "Qual a diferença entre uma consultoria e a PsicoSafe?",
+      a: "A consultoria entrega um laudo pontual e recomendações. A PsicoSafe é uma plataforma inteligente com metodologia própria — baseada na CLT, na NR-01 e na ISO 45003 — que executa todo o processo: aplica o questionário, consolida os dados, classifica os riscos, gera indicadores, identifica os fatores de risco e elabora automaticamente o laudo técnico e o plano de ação. Ainda faz o monitoramento contínuo com indicadores, controle de evidências, ouvidoria anônima e relatórios gerenciais. A atuação dos profissionais de SST segue essencial na análise técnica e na validação das informações."
     },
     {
       q: "Como funciona o anonimato da ouvidoria e dos questionários?",
@@ -81,6 +81,7 @@ export default function Home() {
           <nav className="nav-links">
             <a href="#como-funciona">Como funciona</a>
             <a href="#solucoes">Produto</a>
+            <a href="#diferenciais">Diferenciais</a>
             <a href="#para-quem">Para quem é</a>
             <a href="#faq">Dúvidas</a>
             <a href="#agendar" className="btn btn-primary" style={{ padding: '10px 20px', fontSize: '14px' }}>
@@ -340,6 +341,48 @@ export default function Home() {
               <span className="persona-role">C-Level · Diretoria</span>
               <h4>Diretor(a) Executivo(a)</h4>
               <p>Você que precisa proteger a empresa de risco trabalhista, tomar decisões baseadas em dado e mostrar à diretoria que saúde mental virou agenda regulatória.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DIFERENCIAIS / POR QUE ESCOLHER */}
+      <section className="diferenciais section-pad" id="diferenciais">
+        <div className="container">
+          <div className="text-center">
+            <span className="overline">O diferencial da plataforma</span>
+            <h2>Por que escolher a <em>PsicoSafe</em>?</h2>
+          </div>
+          <div className="dif-grid">
+            <div className="dif-card">
+              <div className="dif-icon"><Layers size={28} /></div>
+              <h4>Todo processo digital</h4>
+              <p>Do levantamento ao laudo, tudo em uma única plataforma — sem planilhas soltas.</p>
+            </div>
+            <div className="dif-card">
+              <div className="dif-icon"><FileCheck2 size={28} /></div>
+              <h4>Metodologia própria</h4>
+              <p>Baseada na CLT, na NR-01 e na ISO 45003, com referências técnicas reconhecidas.</p>
+            </div>
+            <div className="dif-card">
+              <div className="dif-icon"><Settings2 size={28} /></div>
+              <h4>Controles rápidos e eficientes</h4>
+              <p>Indicadores em tempo real e rastreabilidade para apoiar a conformidade.</p>
+            </div>
+            <div className="dif-card">
+              <div className="dif-icon"><ClipboardList size={28} /></div>
+              <h4>Questionário via link</h4>
+              <p>Aplicado por link e totalmente anônimo, para respostas honestas e maior adesão.</p>
+            </div>
+            <div className="dif-card">
+              <div className="dif-icon"><Ear size={28} /></div>
+              <h4>Canal de ouvidoria anônimo</h4>
+              <p>Relatos confidenciais que fortalecem a escuta e a cultura de segurança.</p>
+            </div>
+            <div className="dif-card">
+              <div className="dif-icon"><Target size={28} /></div>
+              <h4>Plano de ação</h4>
+              <p>Com total controle: acompanhamento das ações, evidências e prazos.</p>
             </div>
           </div>
         </div>
